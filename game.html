@@ -25,25 +25,43 @@
 
     <script>
         const gameSettings = JSON.parse(localStorage.getItem('gameSettings'));
-        const { players, timer, spy } = gameSettings;
-        console.log(players,timer,spy)
+        const { players, timer, spy, locat} = gameSettings;
+        
+        let currentPlayer = 1
+        let card = document.querySelector(".card-container")
+        console.log(spy, locat)
 
-        for(let i = 1; i < players+1; i++){
-            if (i == spy){
-                let card = document.querySelector(".card-container")
-                card.innerHTML = `
-                    <div class="card" onclick="this.classList.toggle('flipped')">
-                        <div class="card-front">
-                            <h2>Игрок ${i}</h2>
-                            <p>Нажмите, чтобы узнать свою роль</p>
-                        </div>
-                        <div class="card-back">
-                            <h1>Вы шпион</h1>
-                        </div>
+        function showCard(playerNumber){
+            card.innerHTML = `
+                <div class="card" onclick="handleCardClick(this, ${playerNumber})">
+                    <div class="card-front">
+                        <h2>Игрок ${playerNumber}</h2>
+                        <p>Нажмите, чтобы узнать свою роль</p>
                     </div>
-                `
+                    <div class="card-back">
+                        <h1 ${playerNumber == spy ? 'class="spy"':''}>${playerNumber == spy ? "Вы шпион" : locat}</h1>
+                    </div>
+                </div>
+            `
+        }
+
+        function handleCardClick(cardElement, playerNumber) {
+            if (!cardElement.classList.contains('flipped')) {
+                cardElement.classList.add('flipped');
+            } else {
+                cardElement.classList.add('disappear');
+                setTimeout(() => {
+                    if (playerNumber < players) {
+                        currentPlayer++;
+                        showCard(currentPlayer);
+                    } else {
+                        card.innerHTML = '<h2>Все карточки показаны!</h2>';
+                    }
+                }, 500);
             }
         }
+
+        showCard(currentPlayer);
     </script>
 </body>
 </html>
