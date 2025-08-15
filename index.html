@@ -9,30 +9,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e44390d4de.js" crossorigin="anonymous"></script>
+    <script src="js/data.js" defer></script>
 </head>
 <body>
     <header>
-        <i class="fa-solid fa-user-secret"></i>
-        <h1>Шпион</h1>
+        <a class="logo" href="/">
+            <i class="fa-solid fa-user-secret"></i>
+            <h1>Шпион</h1>
+        </a>
     </header>
     <hr>
 
     <h2 class="options">Параметры игры</h2>
 
-    <form action="">
+    <form id="gameSettingsForm" action="game.html" method="get">
         <div class="players">
             <label for="players">Игроки</label>
             <select name="players" id="players">
-                <option value="one">1</option>
-                <option value="two">2</option>
-                <option value="three">3</option>
-                <option value="four">4</option>
-                <option value="five">5</option>
-                <option value="six">6</option>
-                <option value="seven">7</option>
-                <option value="eight">8</option>
-                <option value="nine">9</option>
-                <option value="ten">10</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="5">6</option>
+                <option value="6">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
             </select>
         </div>
         

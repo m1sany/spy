@@ -4,12 +4,16 @@
     padding: 0;
 }
 
-header{
+.logo{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    color: #ac1c1b;
+    text-decoration: none;
 }
+
+
 
 i{
     font-size: 34px;

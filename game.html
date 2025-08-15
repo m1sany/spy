@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шпион</title>
+    <link rel="stylesheet" href="css/game_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e44390d4de.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <a class="logo" href="/">
+            <i class="fa-solid fa-user-secret"></i>
+            <h1>Шпион</h1>
+        </a>
+    </header>
+    <hr>
+
+    <div class="card-container">
+
+    </div>
+
+    <script>
+        const gameSettings = JSON.parse(localStorage.getItem('gameSettings'));
+        const { players, timer, spy } = gameSettings;
+        console.log(players,timer,spy)
+
+        for(let i = 1; i < players+1; i++){
+            if (i == spy){
+                let card = document.querySelector(".card-container")
+                card.innerHTML = `
+                    <div class="card" onclick="this.classList.toggle('flipped')">
+                        <div class="card-front">
+                            <h2>Игрок ${i}</h2>
+                            <p>Нажмите, чтобы узнать свою роль</p>
+                        </div>
+                        <div class="card-back">
+                            <h1>Вы шпион</h1>
+                        </div>
+                    </div>
+                `
+            }
+        }
+    </script>
+</body>
+</html>
