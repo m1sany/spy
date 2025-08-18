@@ -36,6 +36,10 @@ body{
 }
 
 .card-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     perspective: 1000px;
     margin-top: 50px;
     padding: 0 50px;
@@ -96,4 +100,11 @@ body{
 @keyframes appear {
     from { transform: scale(0); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+.timer{
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 40px;
+    font-family: "Oswald", sans-serif;
 }

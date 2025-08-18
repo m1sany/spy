@@ -25,11 +25,14 @@
 
     <script>
         const gameSettings = JSON.parse(localStorage.getItem('gameSettings'));
-        const { players, timer, spy, locat} = gameSettings;
+        const { players, time, spy, locat} = gameSettings;
         
         let currentPlayer = 1
         let card = document.querySelector(".card-container")
-        console.log(spy, locat)
+        let timeInSeconds = time * 60
+        let timerInterval
+
+        console.log(spy)
 
         function showCard(playerNumber){
             card.innerHTML = `
@@ -45,6 +48,26 @@
             `
         }
 
+        function updateTimer() {
+            const minutes = Math.floor(timeInSeconds / 60)
+            const seconds = timeInSeconds % 60
+
+            const formattedMinutes = minutes < 10 ? '0' + minutes : minutes
+            const formattedSeconds = seconds < 10 ? '0' + seconds : seconds
+
+            card.innerHTML = `<p class="timer">${formattedMinutes}:${formattedSeconds}</p>`
+
+            if (timeInSeconds <= 0) {
+                clearInterval(timerInterval)
+                card.innerHTML = `
+                    <p class="timer">00:00</p>
+                    <p class="timer spy">Шпионом был игрок ${spy}</p>
+                `
+            } else {
+                timeInSeconds--
+            }
+        }
+
         function handleCardClick(cardElement, playerNumber) {
             if (!cardElement.classList.contains('flipped')) {
                 cardElement.classList.add('flipped');
@@ -55,7 +78,7 @@
                         currentPlayer++;
                         showCard(currentPlayer);
                     } else {
-                        card.innerHTML = '<h2>Найдите шпиона!</h2>';
+                        setInterval(() => updateTimer(),1000)
                     }
                 }, 500);
             }
